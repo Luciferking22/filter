@@ -452,42 +452,25 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 protect_content=True if ident == "filep" else False 
             )
             msg1 = await query.message.reply(
-
-                f'<b>Hey 👋{query.from_user.mention}\n\n'
-
-                f'<b>📫 Yᴏʀ Fɪʟᴇ ɪꜱ Rᴇᴀᴅʏ 👇\n\n'
-
-                f'<b>🎬 Mᴏᴠɪᴇ Nᴀᴍᴇ: {title}</b>\n\n'
-
-                f'<b>⚙️ Mᴏᴠɪᴇ Sɪᴢᴇ: {size}</b>\n\n'
-
-                f'<b>📂 Mᴏᴠɪᴇ Tʏᴘᴇ: {type}</b>\n\n'
-
-                '<code>THis file will be deleted in 5 minutes.!</code>',
-
+                f'<b> Hai 👋 {query.from_user.mention} </b>😍\n\n📫 Your File Is Ready\n\n'           
+                f'<code>THis file will be deleted in 5 minutes.!</code>\n'              
+                f'<b>📽 Film Nᴀᴍᴇ: {title}</b>\n\n<b>🗯 Mᴏᴠɪᴇ Sɪᴢᴇ: {size}</b>',
                 True,
-
                 'html',
-
                 reply_markup=InlineKeyboardMarkup(
-
                     [
-
                         [
-
-                            InlineKeyboardButton("🔥 GET FILE 🔥", url = ms.link)
-
+                            InlineKeyboardButton(f'ɪɴꜰᴏ', callback_data='tips')
                         ],
-
                         [
-
-                            InlineKeyboardButton("⚠️ 𝐂𝐚𝐧'𝐭 𝐀𝐜𝐜𝐞𝐬𝐬❓𝐂𝐥𝐢𝐜𝐤 𝐇𝐞𝐫𝐞 ⚠️", url=f'https://t.me/+NmhTxuQACl8zMmJl')
-
+                            InlineKeyboardButton("⚠️ 𝐂𝐚𝐧'𝐭 𝐀𝐜𝐜𝐞𝐬𝐬❓𝐂𝐥𝐢𝐜𝐤 𝐇𝐞𝐫𝐞 ⚠️", url ='https://t.me/+NmhTxuQACl8zMmJl')
+                        ],
+                        [
+                            InlineKeyboardButton('🔥 GET FILE 🔥', url = msg.link)
                         ]
-
                     ]
-
                 )
+            )
             await query.answer('Check Out The Chat',)
             await asyncio.sleep(300)
             await msg1.delete()
