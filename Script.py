@@ -78,7 +78,7 @@ Pay attention to the following…
 """
     
     IMDB_MOVIE_2 = """<b>
-🧿 ᴛɪᴛᴛʟᴇ :  [{title}]({url})
+🧿 ᴛɪᴛᴛʟᴇ :  <b>{title}</b>
 🌟 ʀᴀᴛɪɴɢ : <code>{rating}</code>
 🎭 ɢᴇɴʀᴇ : <code>{genres}</code>
 
