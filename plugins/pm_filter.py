@@ -28,6 +28,18 @@ logger.setLevel(logging.ERROR)
 
 BUTTONS = {}
 SPELL_CHECK = {}
+FILTER_MODE = {}
+
+import datetime
+now = datetime.datetime.now()
+hour = now.hour
+
+if hour < 12:
+    greeting = "Good morning"
+elif hour < 18:
+    greeting = "Good afternoon"
+else:
+    greeting = "Good night"
 
 
 @Client.on_message((filters.group | filters.private) & filters.text & ~filters.edited & filters.incoming)
@@ -66,8 +78,8 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"📂 [{get_size(file.file_size)}] {file.file_name}", callback_data=f'{pre}#{file.file_id}#{query.from_user.id}'
-                )
+                    text=f"📽 {file.file_name} 🗯 {get_size(file.file_size)}", callback_data=f'files#{file.file_id}'
+                ),
             ] 
             for file in files
         ]
@@ -85,18 +97,14 @@ async def next_page(bot, query):
             for file in files
         ]
 
+    btn.insert(0, [
+        InlineKeyboardButton(text=f"🔮 {search} 🔮", callback_data="so")
+    ])
     btn.insert(0, 
-        [
-            InlineKeyboardButton(f'♨️ {search} ♨️ ', 'dupe')
-        ]
-    )
-    btn.insert(1,
-        [ 
-            InlineKeyboardButton(f'ᴍᴏᴠɪᴇs', 'dupe'),
-            InlineKeyboardButton(f'sᴇʀɪᴇs', 'dupe'),
-            InlineKeyboardButton(f'ᴛɪᴘs', 'tips')
-        ]
-    )
+            [
+                InlineKeyboardButton(text=f"📑 File: {len(files)}", callback_data="fil"),
+                InlineKeyboardButton("🗯️ Tips", callback_data="tip")
+            ])
 
     if 0 < offset <= 10:
         off_set = 0
@@ -106,21 +114,27 @@ async def next_page(bot, query):
         off_set = offset - 10
     if n_offset == 0:
         btn.append(
-            [InlineKeyboardButton("⏪ BACK", callback_data=f"next_{req}_{key}_{off_set}"),
-             InlineKeyboardButton(f"📃 Pages {round(int(offset) / 10) + 1} / {round(total / 10)}",
-                                  callback_data="pages")]
+            [InlineKeyboardButton("<< Back", callback_data=f"next_{req}_{key}_{off_set}")]
+        )
+        btn.append(
+            [InlineKeyboardButton(f"👉 Pages {round(int(offset)/10)+1} / {round(total/10)} 👈", callback_data="pages")]
         )
     elif off_set is None:
         btn.append(
-            [InlineKeyboardButton(f"🗓 {round(int(offset) / 10) + 1} / {round(total / 10)}", callback_data="pages"),
-             InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{req}_{key}_{n_offset}")])
+            [InlineKeyboardButton(text="Next >>",callback_data=f"next_{req}_{key}_{offset}")]
+        )
+        btn.append(
+            [InlineKeyboardButton(text=f"👉 Pages 1/{round(int(total_results)/10)} 👈",callback_data="pages")]
+        ) 
     else:
         btn.append(
             [
-                InlineKeyboardButton("⏪ BACK", callback_data=f"next_{req}_{key}_{off_set}"),
-                InlineKeyboardButton(f"🗓 {round(int(offset) / 10) + 1} / {round(total / 10)}", callback_data="pages"),
-                InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{req}_{key}_{n_offset}")
-            ],
+                InlineKeyboardButton("<< Back", callback_data=f"next_{req}_{key}_{off_set}"),
+                InlineKeyboardButton("Next >>", callback_data=f"next_{req}_{key}_{n_offset}")
+            ], 
+        )
+        btn.append(
+            [InlineKeyboardButton(f"👉 Pages {round(int(offset)/10)+1} / {round(total/10)} 👈", callback_data="pages")]
         )
     try:
         await query.edit_message_reply_markup(
@@ -434,7 +448,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             msg = await client.send_cached_media(
                 chat_id=AUTH_CHANNEL,
                 file_id=file_id,
-                caption=f'<b>📽 {title}</b>\n\n<code>🗯 {size}</code>\n\n<code>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</code>\n\n<b>{query.from_user.mention}✨</b>\n\n<i>Because of copyright this file will be deleted from here within 5 minutesSo forward it to anywhere before downloading!</i>\n\n<i>കോപ്പിറൈറ്റ് ഉള്ളതുകൊണ്ട് ഈ ഫയൽ 5 മിനിറ്റിനുള്ളിൽ ഇവിടെനിന്നും ഡിലീറ്റ് ആകുന്നതാണ്അതുകൊണ്ട് ഇവിടെ നിന്നും മറ്റെവിടെക്കെങ്കിലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക!</i>\n\n<b><b>🔰 Powered By:</b>{query.message.chat.title}</b>',
+                caption=f'<b>📽 {title}</b>\n\n<code>🗯 {size}</code>\n\n<code>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</code>\n\n<b>{greeting} {query.from_user.mention}✨</b>\n\n<i>Because of copyright this file will be deleted from here within 5 minutesSo forward it to anywhere before downloading!</i>\n\n<i>കോപ്പിറൈറ്റ് ഉള്ളതുകൊണ്ട് ഈ ഫയൽ 5 മിനിറ്റിനുള്ളിൽ ഇവിടെനിന്നും ഡിലീറ്റ് ആകുന്നതാണ്അതുകൊണ്ട് ഇവിടെ നിന്നും മറ്റെവിടെക്കെങ്കിലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക!</i>\n\n<b><b>🔰 Powered By:</b>{query.message.chat.title}</b>',
                 protect_content=True if ident == "filep" else False 
             )
                          msg1 = await query.message.reply(
@@ -461,7 +475,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
                         [
 
-                            InlineKeyboardButton("🔰𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐍𝐎𝐖🔰", url = ms.link)
+                            InlineKeyboardButton("🔥 GET FILE 🔥", url = ms.link)
 
                         ],
 
@@ -1004,8 +1018,24 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
     elif query.data == "close":
         await query.message.delete()
+    elif query.data == "fil":
+        await query.answer("This movie have total : {total_results} ", show_alert=True
+        )
+    elif query.data == "reason":
+        await query.answer("""I couldn't find the file you requested 😕
+Try to do the following...
+=> Request with correct spelling
+=> Don't ask movies that are not released in OTT platforms
+=> Try to ask in [MovieName, Language] this format.
+=> Search on Google 😌""", show_alert=True
+        )
     elif query.data == 'tips':
-        await query.answer("sᴇɴᴅ ᴄᴏʀʀᴇᴄᴛ ᴍᴏᴠɪᴇ/sᴇʀɪᴇs ɴᴀᴍᴇ ғᴏʀ ʙᴇᴛᴛᴇʀ ʀᴇsᴜʟᴛs .\nᴛᴏ ɢᴇᴛ ʙᴇᴛᴛᴇʀ ʀᴇsᴜʟᴛ ғᴏʀ sᴇʀɪᴇs sᴇᴀʀᴄʜ ʟɪᴋᴇ ᴇxᴀᴍᴘʟᴇ ɢɪᴠᴇɴ, Eg - Peaky Blinders S01E01\n\n © 𝖥𝖨𝖫𝖤𝖲𝖤𝖠𝖱𝖢𝖧𝗑𝖡𝖮𝖳", True)
+        await query.answer("""=> Ask with Correct Spelling
+=> Don't ask movie's those are not released in OTT 🤧
+=> For better results :
+      - Movie name language
+      - Eg: Solo Malayalam""", show_alert=True
+        )
     try: await query.answer('Your Results are there in Filter Button') 
     except: pass
 
@@ -1039,9 +1069,8 @@ async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                        text=f"📂 [{get_size(file.file_size)}] {file.file_name}", 
-                        callback_data=f'{pre}#{file.file_id}#{msg.from_user.id if msg.from_user is not None else 0}'
-                )
+                    text=f"📽 {file.file_name} 🗯 {get_size(file.file_size)}", callback_data=f'files#{file.file_id}'
+                ),
             ] 
             for file in files
         ]
@@ -1060,30 +1089,27 @@ async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
             for file in files
         ]
 
-    btn.insert(0, 
-        [
-            InlineKeyboardButton(f'♨️ {search} ♨️ ', 'dupe')
-        ]
-    )
-    btn.insert(1,
-        [
-            InlineKeyboardButton(f'ᴍᴏᴠɪᴇs', 'dupe'),
-            InlineKeyboardButton(f'sᴇʀɪᴇs', 'dupe'),
-            InlineKeyboardButton(f'ᴛɪᴘs', 'tips')
-        ]
-    )
+    btn.insert(0, [
+        InlineKeyboardButton(text=f"🔮 {search} 🔮", callback_data="so")
+    ])
+    btn.insert(0, [
+        InlineKeyboardButton(text=f"📑 File: {len(files)}", callback_data="fil"),
+        InlineKeyboardButton("🗯️ Tips", callback_data="tip")
+    ])
 
     if offset != "":
         key = f"{message.chat.id}-{message.message_id}"
         BUTTONS[key] = search
         req = message.from_user.id if message.from_user else 0
         btn.append(
-            [InlineKeyboardButton(text=f"🗓 1/{round(int(total_results) / 10)}", callback_data="pages"),
-             InlineKeyboardButton(text="NEXT ⏩", callback_data=f"next_{req}_{key}_{offset}")]
+            [InlineKeyboardButton(text="Next >>",callback_data=f"next_{req}_{key}_{offset}")]
+        )
+        btn.append(
+            [InlineKeyboardButton(text=f"👉 Pages 1/{round(int(total_results)/10)} 👈",callback_data="pages")]
         )
     else:
         btn.append(
-            [InlineKeyboardButton(text="🗓 1/1", callback_data="pages")]
+            [InlineKeyboardButton(text="👉 Pages 1/1 👈",callback_data="pages")]
         )
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
