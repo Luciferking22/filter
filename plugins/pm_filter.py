@@ -504,7 +504,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     m = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
 
-        Time = m.hour
+        import datetime
+        now = datetime.datetime.now()
+        hour = now.hour
+
         
         if Time < 12:
             nihaal="ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ" 
