@@ -74,17 +74,8 @@ async def start(client, message: pyrogram.types.Message):
             photo=random.choice(PICS),
         )
         
-        if Time < 12:
-            nihaal="ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ" 
-        elif Time < 15:
-            nihaal="ɢᴏᴏᴅ ᴀғᴛᴇʀɴᴏᴏɴ" 
-        elif Time < 20:
-            nihaal="ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ"
-        else:
-            nihaal="ɢᴏᴏᴅ ɴɪɢʜᴛ"
-        
         START_TXT = f"""
-<b>{nihaal} {message.from_user.mention}  ʙᴜᴅᴅʏ
+<b>ʜᴇʏ {message.from_user.mention} ʙᴜᴅᴅʏ
 ᴍʏ ɴᴀᴍᴇ ɪꜱ  <a href=https://t.me/MHLinkzBot><b> ΠΔZRIΨΔ ᡧ </b></a>  ɪ ᴄᴀɴ ᴘʀᴏᴠɪᴅᴇ ʏᴏᴜ ᴍᴏᴠɪᴇꜱ ᴊᴜꜱᴛ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ꜱᴇᴇ ᴍʏ ᴘᴏᴡᴇʀ 😈</b>
 """
         buttons = [[
@@ -126,21 +117,8 @@ async def start(client, message: pyrogram.types.Message):
             photo=random.choice(PICS),
         )
         
-        m = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
-
-        Time = m.hour
-        
-        if Time < 12:
-            nihaal="ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ" 
-        elif Time < 15:
-            nihaal="ɢᴏᴏᴅ ᴀғᴛᴇʀɴᴏᴏɴ" 
-        elif Time < 20:
-            nihaal="ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ"
-        else:
-            nihaal="ɢᴏᴏᴅ ɴɪɢʜᴛ"
-        
         START_TXT = f"""
-<b>{nihaal} {message.from_user.mention}  ʙᴜᴅᴅʏ
+<b>ʜᴇʏ {message.from_user.mention} ʙᴜᴅᴅʏ
 ᴍʏ ɴᴀᴍᴇ ɪꜱ  <a href=https://t.me/MHLinkzBot><b>ΠΔZRIΨΔ ᡧ</b></a>  ɪ ᴄᴀɴ ᴘʀᴏᴠɪᴅᴇ ʏᴏᴜ ᴍᴏᴠɪᴇꜱ ᴊᴜꜱᴛ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ꜱᴇᴇ ᴍʏ ᴘᴏᴡᴇʀ 😈</b>
 """
         buttons = [[
