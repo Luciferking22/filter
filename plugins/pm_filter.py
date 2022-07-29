@@ -454,7 +454,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             msg1 = await query.message.reply(
                 f'<b> Hai 👋 {query.from_user.mention} </b>😍\n\n📫 Your File Is Ready\n\n'           
                 f'<code>THis file will be deleted in 5 minutes.!</code>\n'              
-                f'<b>📽 Film Nᴀᴍᴇ: {title}</b>\n\n<b>🗯 Mᴏᴠɪᴇ Sɪᴢᴇ: {size}</b>',
+                f'<b>📽 Film Nᴀᴍᴇ: {title}</b>\n\n<b>🗯 Mᴏᴠɪᴇ Sɪᴢᴇ</b> : </b>{size}</b>',
                 True,
                 'html',
                 reply_markup=InlineKeyboardMarkup(
