@@ -452,21 +452,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 protect_content=True if ident == "filep" else False 
             )
             msg1 = await query.message.reply(
-                f'<b> Hai 👋 {query.from_user.mention} </b>😍\n\n📫 Your File Is Ready\n\n'           
-                f'<code>THis file will be deleted in 5 minutes.!</code>\n'              
-                f'<b>📽 Film Nᴀᴍᴇ: {title}</b>\n\n<b>🗯 Mᴏᴠɪᴇ Sɪᴢᴇ</b> : </b>{size}</b>',
+                f'<b> ʜᴇʏ 👋 {query.from_user.mention} </b>😍\n\n<b>📫 ʏᴏᴜʀ ғɪʟᴇ ɪs ʀᴇᴀᴅʏ 👇</b>\n\n'           
+                f'<b>📂 Fɪʟᴇ Nᴀᴍᴇ</b> : <code>[MH] {title}</code>\n\n'              
+                f'<b>⚙️ Fɪʟᴇ Sɪᴢᴇ</b> : <b>{size}</b>',
                 True,
                 'html',
+                disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton(f'ɪɴꜰᴏ', callback_data='tips')
+                            InlineKeyboardButton("📥  ᴅᴏᴡɴʟᴏᴀᴅ ʟɪɴᴋ  📥", url = ms.link)
                         ],
                         [
-                            InlineKeyboardButton("⚠️ 𝐂𝐚𝐧'𝐭 𝐀𝐜𝐜𝐞𝐬𝐬❓𝐂𝐥𝐢𝐜𝐤 𝐇𝐞𝐫𝐞 ⚠️", url ='https://t.me/+NmhTxuQACl8zMmJl')
-                        ],
-                        [
-                            InlineKeyboardButton('🔥 GET FILE 🔥', url = msg.link)
+                            InlineKeyboardButton("⚠️ ᴄᴀɴɴᴏᴛ ᴀᴄᴄᴇss ❓ ᴄʟɪᴄᴋ ʜᴇʀᴇ ⚠️", url=f'https://t.me/+NmhTxuQACl8zMmJl')
                         ]
                     ]
                 )
