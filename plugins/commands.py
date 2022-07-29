@@ -74,9 +74,6 @@ async def start(client, message: pyrogram.types.Message):
             photo=random.choice(PICS),
         )
         
-
-        Time = m.hour
-        
         if Time < 12:
             nihaal="ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ" 
         elif Time < 15:
