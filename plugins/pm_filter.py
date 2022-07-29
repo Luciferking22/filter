@@ -502,19 +502,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             caption=f_caption,
             protect_content=True if ident == 'checksubp' else False
         )
-    m = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))    
-        
-        if Time < 12:
-            nihaal="ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ" 
-        elif Time < 15:
-            nihaal="ɢᴏᴏᴅ ᴀғᴛᴇʀɴᴏᴏɴ" 
-        elif Time < 20:
-            nihaal="ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ"
-        else:
-            nihaal="ɢᴏᴏᴅ ɴɪɢʜᴛ"
-        
         START_TXT = f"""
-<b>{nihaal} {query.from_user.mention}  ʙᴜᴅᴅʏ
+<b>ʜᴇʏ {query.from_user.mention}  ʙᴜᴅᴅʏ
 ᴍʏ ɴᴀᴍᴇ ɪꜱ  <a href=https://t.me/MHLinkzBot><b>ΠΔZRIΨΔ ᡧ</b></a>  ɪ ᴄᴀɴ ᴘʀᴏᴠɪᴅᴇ ʏᴏᴜ ᴍᴏᴠɪᴇꜱ ᴊᴜꜱᴛ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ꜱᴇᴇ ᴍʏ ᴘᴏᴡᴇʀ 😈</b>
 """
         buttons = [[
