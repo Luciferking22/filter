@@ -74,7 +74,6 @@ async def start(client, message: pyrogram.types.Message):
             photo=random.choice(PICS),
         )
         
-        m = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
 
         Time = m.hour
         
