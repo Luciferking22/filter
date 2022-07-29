@@ -91,10 +91,7 @@ Pay attention to the following…
 <i>★ ᴘᴏᴡᴇʀᴇᴅ ʙʏ : {group}</i>
 </b>"""
 
-CODES:
 
-» https://github.com/DKBOTx/TovinoBotV3
-"""
     TTS_TXT = """<b>TEXT TO SPEACH</b>
 Simple Telegram Text-To-Speech Module.
 It can use the following as speech synthesis engines:
