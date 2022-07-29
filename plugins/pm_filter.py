@@ -432,7 +432,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             msg1 = await query.message.reply(
                 f'<b>📽 File Name: {title}</b>\n\n'
                 f'<b>🗯 File Size: {size}</b>\n\n'
-                '<code>⏳ Error?</code> <a href='https://t.me/+NmhTxuQACl8zMmJl'>CLICK HERE TO JOIN & TRY AGAIN!</a>',
+                '<code>Error?</code></a>href='https://t.me/+NmhTxuQACl8zMmJl'>CLICK HERE TO JOIN & TRY AGAIN!</a>',
                 True,
                 'html',
                 reply_markup=InlineKeyboardMarkup(
