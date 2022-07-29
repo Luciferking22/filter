@@ -54,7 +54,7 @@ IMDB = is_enabled((environ.get('IMDB', "True")), True)
 SINGLE_BUTTON = is_enabled((environ.get('SINGLE_BUTTON', "False")), False)
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", None)
 BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)
-IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", "<b>{title}</b>
+IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE"<b>{title}</b>
 
 <b>🧬 Genre:</b> {genres}
 <b>🌟 Rating:</b> {rating}
