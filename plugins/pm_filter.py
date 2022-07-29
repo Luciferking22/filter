@@ -426,14 +426,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
             msg = await client.send_cached_media(
                 chat_id=AUTH_CHANNEL,
                 file_id=file_id,
-                caption=f'<b>Hai 👋 {query.from_user.mention}</b> 😍\n\n<code>[DK_BOTx] {title}</code>\n\n⚠️ <i>This file will be deleted from here within 5 minute as it has copyright ... !!!</i>\n\n<i>കോപ്പിറൈറ്റ് ഉള്ളതുകൊണ്ട് ഫയൽ 5 മിനിറ്റിനുള്ളിൽ ഇവിടെനിന്നും ഡിലീറ്റ് ആകുന്നതാണ് അതുകൊണ്ട് ഇവിടെ നിന്നും മറ്റെവിടെക്കെങ്കിലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക!</i>\n\n<i><b>⚡ Powered by {query.message.chat.title}</b></i>',
+                caption=f'<b>📽 {title}</b>\n\n<code>🗯 {size}</code>\n\n<code>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</code>\n\n<b>{greeting} {query.from_user.mention}✨</b>\n\n<i>Because of copyright this file will be deleted from here within 5 minutesSo forward it to anywhere before downloading!</i>\n\n<i>കോപ്പിറൈറ്റ് ഉള്ളതുകൊണ്ട് ഈ ഫയൽ 5 മിനിറ്റിനുള്ളിൽ ഇവിടെനിന്നും ഡിലീറ്റ് ആകുന്നതാണ്അതുകൊണ്ട് ഇവിടെ നിന്നും മറ്റെവിടെക്കെങ്കിലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക!</i>\n\n<b><b>🔰 Powered By:</b>{query.message.chat.title}</b>',
                 protect_content=True if ident == "filep" else False 
             )
             msg1 = await query.message.reply(
-                f'<b>📽 File Name</b> : <code>{file_name}</code>\n\n     
-                f'<b>🗯 Size</b> : <b>{file_size}</b>
-
-                <code>⏳ Error?</code> <a href='https://t.me/+NmhTxuQACl8zMmJl'>CLICK HERE TO JOIN & TRY AGAIN!</a>'>CLICK HERE TO JOIN & TRY AGAIN!</a>',
+                f'<b>📽 File Name: {title}</b>\n\n'
+                f'<b>🗯 File Size: {size}</b>\n\n'
+                '<code>⏳ Error?</code> <a href='https://t.me/+NmhTxuQACl8zMmJl'>CLICK HERE TO JOIN & TRY AGAIN!</a>'>CLICK HERE TO JOIN & TRY AGAIN!</a>',
                 True,
                 'html',
                 reply_markup=InlineKeyboardMarkup(
@@ -442,7 +441,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             InlineKeyboardButton('🔥 GET FILE 🔥', url = msg.link)
                         ],
                         [
-                            InlineKeyboardButton('Close ❌', callback_data='close')
+                            InlineKeyboardButton('✘ Close ✘', callback_data='close')
                         ]
                     ]
                 )
