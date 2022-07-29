@@ -437,23 +437,43 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 caption=f'<b>📽 {title}</b>\n\n<code>🗯 {size}</code>\n\n<code>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</code>\n\n<b>{query.from_user.mention}✨</b>\n\n<i>Because of copyright this file will be deleted from here within 5 minutesSo forward it to anywhere before downloading!</i>\n\n<i>കോപ്പിറൈറ്റ് ഉള്ളതുകൊണ്ട് ഈ ഫയൽ 5 മിനിറ്റിനുള്ളിൽ ഇവിടെനിന്നും ഡിലീറ്റ് ആകുന്നതാണ്അതുകൊണ്ട് ഇവിടെ നിന്നും മറ്റെവിടെക്കെങ്കിലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക!</i>\n\n<b><b>🔰 Powered By:</b>{query.message.chat.title}</b>',
                 protect_content=True if ident == "filep" else False 
             )
-            msg1 = await query.message.reply(
-                f'<b>📽 File Name: {title}</b>\n\n'
-                f'<b>🗯 File Size: {size}</b>\n\n'
-                '<code>ERROR?CLICK HERE TO JOIN & TRY AGAIN![https://t.me/+NmhTxuQACl8zMmJl].!</code>',
+                         msg1 = await query.message.reply(
+
+                f'<b>Hey 👋{query.from_user.mention}\n\n'
+
+                f'<b>📫 Yᴏʀ Fɪʟᴇ ɪꜱ Rᴇᴀᴅʏ 👇\n\n'
+
+                f'<b>🎬 Mᴏᴠɪᴇ Nᴀᴍᴇ: {title}</b>\n\n'
+
+                f'<b>⚙️ Mᴏᴠɪᴇ Sɪᴢᴇ: {size}</b>\n\n'
+
+                f'<b>📂 Mᴏᴠɪᴇ Tʏᴘᴇ: {type}</b>\n\n'
+
+                '<code>THis file will be deleted in 5 minutes.!</code>',
+
                 True,
+
                 'html',
+
                 reply_markup=InlineKeyboardMarkup(
+
                     [
+
                         [
-                            InlineKeyboardButton('🔥 GET FILE 🔥', url = msg.link)
+
+                            InlineKeyboardButton("🔰𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐍𝐎𝐖🔰", url = ms.link)
+
                         ],
+
                         [
-                            InlineKeyboardButton('✘ Close ✘', callback_data='close')
+
+                            InlineKeyboardButton("⚠️ 𝐂𝐚𝐧'𝐭 𝐀𝐜𝐜𝐞𝐬𝐬❓𝐂𝐥𝐢𝐜𝐤 𝐇𝐞𝐫𝐞 ⚠️", url=f'https://t.me/+NmhTxuQACl8zMmJl')
+
                         ]
+
                     ]
+
                 )
-            )
             await query.answer('Check Out The Chat',)
             await asyncio.sleep(300)
             await msg1.delete()
@@ -1189,7 +1209,7 @@ async def advantage_spell_chok(msg):
     )    
     imdb=await get_poster(search)
     if imdb and imdb.get('poster'):
-        ms = await msg.reply_photo(photo=imdb.get('poster'), caption=script.IMDB_MOVIE_2.format(mention=msg.from_user.mention, query=search, title=imdb.get('title'), rating=imdb.get('rating'), genres=imdb.get('genres'), year=imdb.get('year'), runtime=imdb.get('runtime'), language=imdb.get('languages'), group=msg.chat.title, url="https://t.me/MH_MAIN", short=imdb['plot']), reply_markup=reply_markup) 
+        ms = await msg.reply_photo(photo=imdb.get('poster'), caption=script.IMDB_MOVIE_2.format(mention=msg.from_user.mention, query=search, title=imdb.get('title'), rating=imdb.get('rating'), genres=imdb.get('genres'), year=imdb.get('year'), runtime=imdb.get('runtime'), language=imdb.get('languages'), group=msg.chat.title, url="https://t.me/mh_main", short=imdb['plot']), reply_markup=reply_markup) 
         await asyncio.sleep(259200)
         await msg.delete()
         await ms.delete()
