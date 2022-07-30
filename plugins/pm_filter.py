@@ -1001,16 +1001,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
     elif query.data == "close":
         await query.message.delete()
-    elif query.data == "fil":
+    elif query.data == "files":
         await query.answer("This movie have total : {total_results} ", show_alert=True
-        )
-    elif query.data == "reason":
-        await query.answer("""I couldn't find the file you requested 😕
-Try to do the following...
-=> Request with correct spelling
-=> Don't ask movies that are not released in OTT platforms
-=> Try to ask in [MovieName, Language] this format.
-=> Search on Google 😌""", show_alert=True
         )
     elif query.data == 'tips':
         await query.answer("""=> Ask with Correct Spelling
