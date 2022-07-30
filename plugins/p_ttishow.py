@@ -1,3 +1,13 @@
+import datetime
+now = datetime.datetime.now()
+hour = now.hour
+
+if hour < 12:
+    greeting = "Good morning"
+elif hour < 18:
+    greeting = "Good afternoon"
+else:
+    greeting = "Good night"
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong, PeerIdInvalid
@@ -37,8 +47,7 @@ async def save_group(bot, message):
             await bot.leave_chat(message.chat.id)
             return
         buttons = [[
-            InlineKeyboardButton('🍁 ᴏᴡɴᴇʀ', url=f"https://t.me/{temp.U_NAME}?start=owner"),
-            InlineKeyboardButton('🌿 ɢʀᴏᴜᴘ', url='https://t.me/filmdoxproduction')
+            InlineKeyboardButton('✘ Close ✘', callback_data='close_data')
         ]]
         reply_markup=InlineKeyboardMarkup(buttons)
         await message.reply_video(
@@ -54,10 +63,16 @@ async def save_group(bot, message):
                         await (temp.MELCOW['welcome']).delete()
                     except:
                         pass
-                temp.MELCOW['welcome'] = await message.reply_video(
-                video="https://telegra.ph/file/922ba803c3e701590dc97.mp4",
-                caption=f"<b>🔖 ʜᴇʟʟᴏ ᴍʏ ғʀɪᴇɴᴅ {u.mention},</b><b> ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ </b><b>{message.chat.title} 🤤</b>",
-                reply_markup=InlineKeyboardMarkup(buttons))
+                
+            temp.MELCOW['welcome'] = await message.reply(f"""<b>✨ {greeting} {u.mention}! Welcome to {message.chat.title}</b>
+
+<b>🔘 No Promo, No Porn, No Other Abuses</b>
+<b>🔘 Ask Your Movies With Correct Spelling</b>
+<b>🔘 Spammers Stay Away</b>
+<b>🔘 Feel Free To Report Any Errors To Admins using @admin</b>
+
+<b>🔰 Share & Support Us 🔰</b>""")
+
 
 @Client.on_message(filters.command('leave') & filters.user(ADMINS))
 async def leave_a_chat(bot, message):
