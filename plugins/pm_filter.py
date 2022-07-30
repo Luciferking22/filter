@@ -102,8 +102,8 @@ async def next_page(bot, query):
     ])
     btn.insert(0, 
             [
-                InlineKeyboardButton(text=f"📑 File: {len(files)}", callback_data="fil"),
-                InlineKeyboardButton("🗯️ Tips", callback_data="tip")
+                InlineKeyboardButton(text=f"🗂 Files: {len(files)}", callback_data="fil"),
+                InlineKeyboardButton("🔅 Tips", callback_data="tip")
             ])
 
     if 0 < offset <= 10:
@@ -114,27 +114,27 @@ async def next_page(bot, query):
         off_set = offset - 10
     if n_offset == 0:
         btn.append(
-            [InlineKeyboardButton("<< Back", callback_data=f"next_{req}_{key}_{off_set}")]
+            [InlineKeyboardButton("⏪ Back", callback_data=f"next_{req}_{key}_{off_set}")]
         )
         btn.append(
-            [InlineKeyboardButton(f"👉 Pages {round(int(offset)/10)+1} / {round(total/10)} 👈", callback_data="pages")]
+            [InlineKeyboardButton(f"🔰 Pages {round(int(offset)/10)+1} / {round(total/10)} 🔰", callback_data="pages")]
         )
     elif off_set is None:
         btn.append(
-            [InlineKeyboardButton(text="Next >>",callback_data=f"next_{req}_{key}_{offset}")]
+            [InlineKeyboardButton(text="Next ⏩",callback_data=f"next_{req}_{key}_{offset}")]
         )
         btn.append(
-            [InlineKeyboardButton(text=f"👉 Pages 1/{round(int(total_results)/10)} 👈",callback_data="pages")]
+            [InlineKeyboardButton(text=f"🔰 Pages 1/{round(int(total_results)/10)} 🔰",callback_data="pages")]
         ) 
     else:
         btn.append(
             [
-                InlineKeyboardButton("<< Back", callback_data=f"next_{req}_{key}_{off_set}"),
-                InlineKeyboardButton("Next >>", callback_data=f"next_{req}_{key}_{n_offset}")
+                InlineKeyboardButton("⏪ Back", callback_data=f"next_{req}_{key}_{off_set}"),
+                InlineKeyboardButton("Next ⏩", callback_data=f"next_{req}_{key}_{n_offset}")
             ], 
         )
         btn.append(
-            [InlineKeyboardButton(f"👉 Pages {round(int(offset)/10)+1} / {round(total/10)} 👈", callback_data="pages")]
+            [InlineKeyboardButton(f"🔰 Pages {round(int(offset)/10)+1} / {round(total/10)} 🔰", callback_data="pages")]
         )
     try:
         await query.edit_message_reply_markup(
@@ -443,7 +443,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             f_caption = f"{files.file_name}"
             size = f"{files.file_size}"
             mention = f"{query.from_user.mention}"
-  
+        buttons = [[
+            InlineKeyboardButton('➕ 𝖠𝖣𝖣 𝖡𝖮𝖳 𝖳𝖮 𝖸𝖮𝖴𝖱 𝖦𝖱𝖮𝖴𝖯 ➕', url=f'http://t.me/MHLinkzBot?startgroup=true')
+        ]]      
         try:
             msg = await client.send_cached_media(
                 chat_id=AUTH_CHANNEL,
@@ -1074,8 +1076,8 @@ async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
         InlineKeyboardButton(text=f"🔮 {search} 🔮", callback_data="so")
     ])
     btn.insert(0, [
-        InlineKeyboardButton(text=f"📑 File: {len(files)}", callback_data="fil"),
-        InlineKeyboardButton("🗯️ Tips", callback_data="tip")
+        InlineKeyboardButton(text=f"🗂 Files: {len(files)}", callback_data="fil"),
+        InlineKeyboardButton("🔅 Tips", callback_data="tip")
     ])
 
     if offset != "":
@@ -1083,14 +1085,14 @@ async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
         BUTTONS[key] = search
         req = message.from_user.id if message.from_user else 0
         btn.append(
-            [InlineKeyboardButton(text="Next >>",callback_data=f"next_{req}_{key}_{offset}")]
+            [InlineKeyboardButton(text="Next ⏩",callback_data=f"next_{req}_{key}_{offset}")]
         )
         btn.append(
-            [InlineKeyboardButton(text=f"👉 Pages 1/{round(int(total_results)/10)} 👈",callback_data="pages")]
+            [InlineKeyboardButton(text=f"🔰 Pages 1/{round(int(total_results)/10)} 🔰",callback_data="pages")]
         )
     else:
         btn.append(
-            [InlineKeyboardButton(text="👉 Pages 1/1 👈",callback_data="pages")]
+            [InlineKeyboardButton(text="🔰 Pages 1/1 🔰",callback_data="pages")]
         )
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
