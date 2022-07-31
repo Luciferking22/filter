@@ -78,8 +78,8 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"🔖 [{get_size(file.file_size)}] ➧ {file.file_name}", callback_data=f'{pre}#{file.file_id}#{query.from_user.id}'
-                )
+                    text=f"🔖 [{get_size(file.file_size)}] ✧ {file.file_name}", callback_data=f'files#{file.file_id}'
+                ),
             ] 
             for file in files
         ]
@@ -87,7 +87,7 @@ async def next_page(bot, query):
         btn = [        
             [
                 InlineKeyboardButton(
-                    text=f"🎪 {file.file_name}", callback_data=f'{pre}#{file.file_id}#{query.from_user.id}'
+                    text=f" {file.file_name}", callback_data=f'{pre}#{file.file_id}#{query.from_user.id}'
                 ),
                 InlineKeyboardButton(
                     text=f"『{get_size(file.file_size)}』",
@@ -96,11 +96,10 @@ async def next_page(bot, query):
             ] 
             for file in files
         ]
-    btn.insert(1,
-        [ 
-            InlineKeyboardButton(f'ᴍᴏᴠɪᴇs', 'dupe'),
-            InlineKeyboardButton(f'sᴇʀɪᴇs', 'dupe'),
-            InlineKeyboardButton(f'ᴛɪᴘs', 'tips')
+    btn.insert(0,
+        [
+            InlineKeyboardButton(f"🔮 {search}", "dupe"),
+            InlineKeyboardButton(f"🗂️ Files: {len(files)}", "dupe")
         ]
     )
 
@@ -1034,9 +1033,8 @@ async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                        text=f"🔖 [{get_size(file.file_size)}] ➧ {file.file_name}", 
-                        callback_data=f'{pre}#{file.file_id}#{msg.from_user.id if msg.from_user is not None else 0}'
-                )
+                    text=f"🔖 [{get_size(file.file_size)}] ✧ {file.file_name}", callback_data=f'files#{file.file_id}'
+                ),
             ] 
             for file in files
         ]
@@ -1044,7 +1042,7 @@ async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"🎪 {file.file_name}",
+                    text=f" {file.file_name}",
                     callback_data=f'{pre}#{file.file_id}#{msg.from_user.id if msg.from_user is not None else 0}',
                 ),
                 InlineKeyboardButton(
@@ -1054,13 +1052,10 @@ async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
             ]
             for file in files
         ]
-    btn.insert(1,
-        [
-            InlineKeyboardButton(f'ᴍᴏᴠɪᴇs', 'dupe'),
-            InlineKeyboardButton(f'sᴇʀɪᴇs', 'dupe'),
-            InlineKeyboardButton(f'ᴛɪᴘs', 'tips')
-        ]
-    )
+    btn.insert(0, [
+        InlineKeyboardButton(f"🔮 {search}", "dupe"),
+        InlineKeyboardButton(f"🗂️ Files: {total_results}", "dupe")
+    ])
 
     if offset != "":
         key = f"{message.chat.id}-{message.message_id}"
