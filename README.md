@@ -1,4 +1,4 @@
-<h1>𝙏𝙊𝙑𝙄𝙉𝙊 𝘽𝙊𝙏
+<h1>ΠΔZRIΨΔ ᡧ
 
 
 ## Features
@@ -101,11 +101,11 @@ python3 bot.py
 • /link - to create link for one post
 ```
 ## Support
-[𝘿𝙆_𝘽𝙊𝙏𝙭](https://telegram.dog/dk_botx)
+[ΠΔZRIΨΔ ᡧ](https://telegram.dog/filmdoxproduction)
 
 ## Bot
 
-[𝙏𝙤𝙫𝙞𝙣𝙤 𝘽𝙤𝙩](https://telegram.dog/filesearchxbot)
+[ΠΔZRIΨΔ ᡧ](https://telegram.dog/MHLINKZBOT)
 
 ## Credits 
 * [𝘉𝘈𝘚𝘌 𝘙𝘌𝘗𝘖 𝘜𝘚𝘌𝘋](https://github.com/EvamariaTG/EvaMaria)
@@ -118,7 +118,7 @@ python3 bot.py
 
 ### Note
 
-[𝘊𝘳𝘦𝘢𝘵𝘰𝘳](https://telegram.dog/aboutme_dk)
+[𝘊𝘳𝘦𝘢𝘵𝘰𝘳](https://telegram.dog/peaky_blinder_tgp)
 
 Kanging this codes and and editing a few lines and releasing a V.x  or an [alpha](https://telegram.dog/subin_works/204), beta , gama branches of your repo won't make you a Developer.
 Fork the repo and edit as per your needs. 𝘛𝘩𝘦𝘴𝘦 𝘢𝘳𝘦 𝘭𝘪𝘯𝘦𝘴 𝘧𝘳𝘰𝘮 𝘦𝘷𝘢 𝘥𝘦𝘷𝘴 , 𝘪𝘵𝘴 𝘳𝘪𝘨𝘩𝘵 𝘢𝘣𝘰𝘶𝘵 𝘮𝘦 . 
