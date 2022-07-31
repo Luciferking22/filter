@@ -62,7 +62,7 @@ IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE","""<b>{title}</b>
 <b>📆 Release:</b> {year}
 <b>🎙 Language:</b> {languages}
 
-<b>💭 Requested By:</b> <tg-spoiler>||{message.from_user.mention}||</tg-spoiler>
+<b>💭 Requested By:</b> <tg-spoiler>{message.from_user.mention}</tg-spoiler>
 
 <b>🔰 Powered By:</b> <b>{message.chat.title}</b>""")
 LONG_IMDB_DESCRIPTION = is_enabled(environ.get("LONG_IMDB_DESCRIPTION", "False"), False)
