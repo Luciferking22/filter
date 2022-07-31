@@ -1000,7 +1000,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup = InlineKeyboardMarkup(buttons)
             await query.message.edit_reply_markup(reply_markup)
     await query.message.edit_reply_markup(reply_markup)
-        elif query.data == "file":
         await query.answer("This movie have total : {total_results} ", show_alert=True
         )
     elif query.data == "reason":
