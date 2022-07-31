@@ -1001,18 +1001,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
     elif query.data == "close":
         await query.message.delete()
-    elif query.data == "files":
+    elif query.data == "Files":
         await query.answer("This movie have total : {total_results} ", show_alert=True
         )
-    elif query.data == 'tips':
+    elif query.data == 'Tips':
         await query.answer("""=> Ask with Correct Spelling
 => Don't ask movie's those are not released in OTT 🤧
 => For better results :
       - Movie name language
       - Eg: Solo Malayalam""", show_alert=True
         )
-    try: await query.answer('Your Results are there in Filter Button') 
-    except: pass
+    try: await query.answer("ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ ғᴏʀ ᴀ ғᴇᴡ sᴇᴄᴏɴᴅ....")
+     except: pass
 
 
 async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
