@@ -96,16 +96,13 @@ async def next_page(bot, query):
             ] 
             for file in files
         ]
-
-    btn.insert(0, [
-        InlineKeyboardButton(text=f"🔮 {search} 🔮", callback_data="so")
-    ])
     btn.insert(0, 
-            [
-                InlineKeyboardButton(text=f"📑 File: {len(files)}", callback_data="fil"),
-                InlineKeyboardButton("🗯️ Tips", callback_data="tip")
-            ])
-
+        [
+            InlineKeyboardButton(f'ғɪʟᴇs: {len(files)}', callback_data='movie_info'),
+            InlineKeyboardButton(f'ᴍᴏᴠɪᴇ', 'movss'),
+            InlineKeyboardButton(f'ꜱᴇʀɪᴇꜱ', 'moviis')
+        ]
+    )
     if 0 < offset <= 10:
         off_set = 0
     elif offset == 0:
@@ -1000,35 +997,22 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup = InlineKeyboardMarkup(buttons)
             await query.message.edit_reply_markup(reply_markup)
     await query.message.edit_reply_markup(reply_markup)
-        elif query.data == "fil":
-        await query.answer("This movie have total : {total_results} ", show_alert=True
-        )
-    elif query.data == "reason":
-        await query.answer("""I couldn't find the file you requested 😕
-Try to do the following...
-=> Request with correct spelling
-=> Don't ask movies that are not released in OTT platforms
-=> Try to ask in [MovieName, Language] this format.
-=> Search on Google 😌""", show_alert=True
-        )
-    elif query.data == "tip":
-        await query.answer("""=> Ask with Correct Spelling
-=> Don't ask movie's those are not released in OTT 🤧
-=> For better results :
-      - Movie name language
-      - Eg: Solo Malayalam""", show_alert=True
-        )
-    elif query.data == "so":
-        await query.answer(f"""🏷 Title: {search} 
-🎭 Genres: {genres} 
-📆 Year: {year} 
-🌟 Rating: {rating} 
-☀️ Languages : {languages} 
-📀 RunTime: {runtime} Minutes
-📆 Release Info : {release_date} 
-""",show_alert=True
-       )
+        elif query.data == "movss":
+        await query.answer("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\nᴍᴏᴠɪᴇ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n\nɢᴏ ᴛᴏ ɢᴏᴏɢʟᴇ ⪼ ᴛʏᴘᴇ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ⪼ ᴄᴏᴘʏ ᴄᴏʀʀᴇᴄᴛ ɴᴀᴍᴇ ⪼ ᴘᴀꜱᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ\n\nᴇxᴀᴍᴘʟᴇ : ᴋɢꜰ ᴄʜᴀᴘᴛᴇʀ 2  2022\n\n✘ ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)\n\n© ΠΔZRIΨΔ ᡧ", show_alert=True)
 
+    
+    elif query.data == "moviis":  
+        await query.answer("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\nꜱᴇʀɪᴇꜱ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n\nɢᴏ ᴛᴏ ɢᴏᴏɢʟᴇ ⪼ ᴛʏᴘᴇ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ⪼ ᴄᴏᴘʏ ᴄᴏʀʀᴇᴄᴛ ɴᴀᴍᴇ ⪼ ᴘᴀꜱᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ\n\nᴇxᴀᴍᴘʟᴇ : ʟᴏᴋɪ S01 E01\n\n✘ ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)\n\n© ΠΔZRIΨΔ ᡧ", show_alert=True)   
+    
+    elif query.data == 'reqst1':
+        await query.answer("Hey Bro 😍\n\n🎯 Click On The Button below The Files You Want  ⬇️", show_alert=True)
+        
+    elif query.data == "movie_info":
+        await query.answer(f"IMDb Data:\n\n🏷 Title: {imdb.get('title')}\n🎭 Genres: {imdb.get('genres')}\n📆 Year:{imdb.get('year')}\n🌟 Rating: {imdb.get('rating')} / 10\n🖋 StoryLine: <code>{imdb.get('plot')} </code>", reply_markup=InlineKeyboardMarkup(btn), show_alert=True)
+        
+    elif query.data == "reason":
+        await query.answer(script.REASON_TXT, show_alert=True)
+        
 async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
     if not spoll:
         message = msg
@@ -1078,14 +1062,13 @@ async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
             ]
             for file in files
         ]
-
-    btn.insert(0, [
-        InlineKeyboardButton(text=f"🔮 {search} 🔮", callback_data="so")
-    ])
-    btn.insert(0, [
-        InlineKeyboardButton(text=f"📑 File: {len(files)}", callback_data="fil"),
-        InlineKeyboardButton("🗯️ Tips", callback_data="tip")
-    ])
+    btn.insert(0, 
+        [
+            InlineKeyboardButton(f'ғɪʟᴇs: {total_results}', callback_data='movie_info'),
+            InlineKeyboardButton(f'ᴍᴏᴠɪᴇ', 'movss'),
+            InlineKeyboardButton(f'ꜱᴇʀɪᴇꜱ', 'moviis')
+        ]
+    )
 
     if offset != "":
         key = f"{message.chat.id}-{message.message_id}"
