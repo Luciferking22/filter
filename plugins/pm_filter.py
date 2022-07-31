@@ -100,10 +100,10 @@ async def next_page(bot, query):
     btn.insert(0, [
         InlineKeyboardButton(text=f"🔮 {search} 🔮", callback_data="so")
     ])
-    btn.insert(1, 
+    btn.insert(0, 
             [
-                InlineKeyboardButton(text=f"🗂 Files: {len(files)}", callback_data="fil"),
-                InlineKeyboardButton("🔅 Tips", callback_data="tip")
+                InlineKeyboardButton(text=f"📑 File: {len(files)}", callback_data="fil"),
+                InlineKeyboardButton("🗯️ Tips", callback_data="tip")
             ])
 
     if 0 < offset <= 10:
@@ -1075,9 +1075,9 @@ async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
     btn.insert(0, [
         InlineKeyboardButton(text=f"🔮 {search} 🔮", callback_data="so")
     ])
-    btn.insert(1, [
-        InlineKeyboardButton(text=f"🗂 Files: {len(files)}", callback_data="fil"),
-        InlineKeyboardButton("🔅 Tips", callback_data="tip")
+    btn.insert(0, [
+        InlineKeyboardButton(text=f"📑 File: {len(files)}", callback_data="fil"),
+        InlineKeyboardButton("🗯️ Tips", callback_data="tip")
     ])
 
     if offset != "":
