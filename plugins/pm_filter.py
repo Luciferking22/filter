@@ -1000,7 +1000,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup = InlineKeyboardMarkup(buttons)
             await query.message.edit_reply_markup(reply_markup)
     await query.message.edit_reply_markup(reply_markup)
-        elif query.data == "fil":
+        elif query.data == "file":
         await query.answer("This movie have total : {total_results} ", show_alert=True
         )
     elif query.data == "reason":
@@ -1015,7 +1015,7 @@ Try to do the following...
 
 => Search on Google 😌""", show_alert=True
         )
-    elif query.data == "tip":
+    elif query.data == "tips":
         await query.answer("""=> Ask with Correct Spelling
 => Don't ask movie's those are not released in OTT 🤧
 => For better results :
