@@ -96,13 +96,14 @@ async def next_page(bot, query):
             ] 
             for file in files
         ]
-    btn.insert(0, 
-        [
-            InlineKeyboardButton(f'ғɪʟᴇs: {len(files)}', callback_data='movie_info'),
-            InlineKeyboardButton(f'ᴍᴏᴠɪᴇ', 'movss'),
-            InlineKeyboardButton(f'ꜱᴇʀɪᴇꜱ', 'moviis')
+    btn.insert(1,
+        [ 
+            InlineKeyboardButton(f'ᴍᴏᴠɪᴇs', 'dupe'),
+            InlineKeyboardButton(f'sᴇʀɪᴇs', 'dupe'),
+            InlineKeyboardButton(f'ᴛɪᴘs', 'tips')
         ]
     )
+
     if 0 < offset <= 10:
         off_set = 0
     elif offset == 0:
@@ -997,22 +998,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup = InlineKeyboardMarkup(buttons)
             await query.message.edit_reply_markup(reply_markup)
     await query.message.edit_reply_markup(reply_markup)
-        elif query.data == "movie":
-        await query.answer("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\nᴍᴏᴠɪᴇ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n\nɢᴏ ᴛᴏ ɢᴏᴏɢʟᴇ ⪼ ᴛʏᴘᴇ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ⪼ ᴄᴏᴘʏ ᴄᴏʀʀᴇᴄᴛ ɴᴀᴍᴇ ⪼ ᴘᴀꜱᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ\n\nᴇxᴀᴍᴘʟᴇ : ᴋɢꜰ ᴄʜᴀᴘᴛᴇʀ 2  2022\n\n✘ ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)\n\n© ΠΔZRIΨΔ ᡧ", show_alert=True)
+        elif query.data == "close":
+        await query.message.delete()
+    elif query.data == 'tips':
+        await query.answer("sᴇɴᴅ ᴄᴏʀʀᴇᴄᴛ ᴍᴏᴠɪᴇ/sᴇʀɪᴇs ɴᴀᴍᴇ ғᴏʀ ʙᴇᴛᴛᴇʀ ʀᴇsᴜʟᴛs .\nᴛᴏ ɢᴇᴛ ʙᴇᴛᴛᴇʀ ʀᴇsᴜʟᴛ ғᴏʀ sᴇʀɪᴇs sᴇᴀʀᴄʜ ʟɪᴋᴇ ᴇxᴀᴍᴘʟᴇ ɢɪᴠᴇɴ, Eg - Peaky Blinders S01E01\n\n © B𝖮𝖳", True)
+    try: await query.answer('Your Results are there in Filter Button') 
+    except: pass
 
-    
-    elif query.data == "moviis":  
-        await query.answer("⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\nꜱᴇʀɪᴇꜱ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ\n⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯\n\nɢᴏ ᴛᴏ ɢᴏᴏɢʟᴇ ⪼ ᴛʏᴘᴇ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ⪼ ᴄᴏᴘʏ ᴄᴏʀʀᴇᴄᴛ ɴᴀᴍᴇ ⪼ ᴘᴀꜱᴛᴇ ᴛʜɪꜱ ɢʀᴏᴜᴘ\n\nᴇxᴀᴍᴘʟᴇ : ʟᴏᴋɪ S01 E01\n\n✘ ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)\n\n© ΠΔZRIΨΔ ᡧ", show_alert=True)   
-    
-    elif query.data == 'reqst1':
-        await query.answer("Hey Bro 😍\n\n🎯 Click On The Button below The Files You Want  ⬇️", show_alert=True)
-        
-    elif query.data == "movie_info":
-        await query.answer(f"IMDb Data:\n\n🏷 Title: {imdb.get('title')}\n🎭 Genres: {imdb.get('genres')}\n📆 Year:{imdb.get('year')}\n🌟 Rating: {imdb.get('rating')} / 10\n🖋 StoryLine: <code>{imdb.get('plot')} </code>", reply_markup=InlineKeyboardMarkup(btn), show_alert=True)
-        
-    elif query.data == "reason":
-        await query.answer(script.REASON_TXT, show_alert=True)
-        
+
 async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
     if not spoll:
         message = msg
@@ -1062,11 +1055,11 @@ async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
             ]
             for file in files
         ]
-    btn.insert(0, 
+    btn.insert(1,
         [
-            InlineKeyboardButton(f'ғɪʟᴇs: {total_results}', callback_data='movie_info'),
-            InlineKeyboardButton(f'ᴍᴏᴠɪᴇ', 'movss'),
-            InlineKeyboardButton(f'ꜱᴇʀɪᴇꜱ', 'moviis')
+            InlineKeyboardButton(f'ᴍᴏᴠɪᴇs', 'dupe'),
+            InlineKeyboardButton(f'sᴇʀɪᴇs', 'dupe'),
+            InlineKeyboardButton(f'ᴛɪᴘs', 'tips')
         ]
     )
 
