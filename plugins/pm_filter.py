@@ -1000,27 +1000,35 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup = InlineKeyboardMarkup(buttons)
             await query.message.edit_reply_markup(reply_markup)
     await query.message.edit_reply_markup(reply_markup)
+        elif query.data == "fil":
         await query.answer("This movie have total : {total_results} ", show_alert=True
         )
     elif query.data == "reason":
         await query.answer("""I couldn't find the file you requested 😕
 Try to do the following...
-
 => Request with correct spelling
-
 => Don't ask movies that are not released in OTT platforms
-
 => Try to ask in [MovieName, Language] this format.
-
 => Search on Google 😌""", show_alert=True
         )
-    elif query.data == "tips":
+    elif query.data == "tip":
         await query.answer("""=> Ask with Correct Spelling
 => Don't ask movie's those are not released in OTT 🤧
 => For better results :
       - Movie name language
       - Eg: Solo Malayalam""", show_alert=True
         )
+    elif query.data == "so":
+        await query.answer(f"""🏷 Title: {search} 
+🎭 Genres: {genres} 
+📆 Year: {year} 
+🌟 Rating: {rating} 
+☀️ Languages : {languages} 
+📀 RunTime: {runtime} Minutes
+📆 Release Info : {release_date} 
+""",show_alert=True
+       )
+
 async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
     if not spoll:
         message = msg
