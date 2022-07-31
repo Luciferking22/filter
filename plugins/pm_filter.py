@@ -1000,14 +1000,28 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup = InlineKeyboardMarkup(buttons)
             await query.message.edit_reply_markup(reply_markup)
     await query.message.edit_reply_markup(reply_markup)
-    elif query.data == "close":
-        await query.message.delete()
-    elif query.data == 'tips':
-        await query.answer("sᴇɴᴅ ᴄᴏʀʀᴇᴄᴛ ᴍᴏᴠɪᴇ/sᴇʀɪᴇs ɴᴀᴍᴇ ғᴏʀ ʙᴇᴛᴛᴇʀ ʀᴇsᴜʟᴛs .\nᴛᴏ ɢᴇᴛ ʙᴇᴛᴛᴇʀ ʀᴇsᴜʟᴛ ғᴏʀ sᴇʀɪᴇs sᴇᴀʀᴄʜ ʟɪᴋᴇ ᴇxᴀᴍᴘʟᴇ ɢɪᴠᴇɴ, Eg - Peaky Blinders S01E01\n\n © MHLINKZBOT", True)
-    try: await query.answer('Your Results are there in Filter Button') 
-    except: pass
+        elif query.data == "fil":
+        await query.answer("This movie have total : {total_results} ", show_alert=True
+        )
+    elif query.data == "reason":
+        await query.answer("""I couldn't find the file you requested 😕
+Try to do the following...
 
+=> Request with correct spelling
 
+=> Don't ask movies that are not released in OTT platforms
+
+=> Try to ask in [MovieName, Language] this format.
+
+=> Search on Google 😌""", show_alert=True
+        )
+    elif query.data == "tip":
+        await query.answer("""=> Ask with Correct Spelling
+=> Don't ask movie's those are not released in OTT 🤧
+=> For better results :
+      - Movie name language
+      - Eg: Solo Malayalam""", show_alert=True
+        )
 async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
     if not spoll:
         message = msg
