@@ -443,9 +443,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         buttons = [[
             InlineKeyboardButton('➕ 𝖠𝖣𝖣 𝖡𝖮𝖳 𝖳𝖮 𝖸𝖮𝖴𝖱 𝖦𝖱𝖮𝖴𝖯 ➕', url=f'http://t.me/MHLinkzBot?startgroup=true')
         ]]      
-            else:
-                send_file = await client.send_cached_media(
-                    chat_id=FILE_CHANNEL_ID,
+            try:
+                msg = await client.send_cached_media(
+                    chat_id=AUTH_CHANNEL,
                     file_id=file_id,
                     caption=f'<b>📽 {title}</b>\n\n<code>🗯 {size}</code>\n\n<code>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</code>\n\n<b>{greeting} {query.from_user.mention}✨</b>\n\n<i>Because of copyright this file will be deleted from here within 5 minutesSo forward it to anywhere before downloading!</i>\n\n<i>കോപ്പിറൈറ്റ് ഉള്ളതുകൊണ്ട് ഈ ഫയൽ 5 മിനിറ്റിനുള്ളിൽ ഇവിടെനിന്നും ഡിലീറ്റ് ആകുന്നതാണ്അതുകൊണ്ട് ഇവിടെ നിന്നും മറ്റെവിടെക്കെങ്കിലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക!</i>\n\n<b><b>🔰 Powered By:</b>{query.message.chat.title}</b>',
                     reply_markup = InlineKeyboardMarkup(buttons)   
