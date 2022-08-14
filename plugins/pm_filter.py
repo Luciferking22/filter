@@ -448,31 +448,22 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 chat_id=AUTH_CHANNEL,
                 file_id=file_id,
                 caption=f'<b>{title}</b>\n\n<code>{size}</code>\n\n<code>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</code>\n\n<b>{greeting} {query.from_user.mention}✨</b>\n\n<i>Because of copyright this file will be deleted from here within 5 minutesSo forward it to anywhere before downloading!</i>\n\n<i>കോപ്പിറൈറ്റ് ഉള്ളതുകൊണ്ട് ഈ ഫയൽ 5 മിനിറ്റിനുള്ളിൽ ഇവിടെനിന്നും ഡിലീറ്റ് ആകുന്നതാണ്അതുകൊണ്ട് ഇവിടെ നിന്നും മറ്റെവിടെക്കെങ്കിലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക!</i>\n\n<b><b>🔰 Powered By:</b>{query.message.chat.title}</b>',
-                protect_content=True if ident == "filep" else False 
-            )
-            msg1 = await query.message.reply(
-                f'<b> ʜᴇʏ 👋 {query.from_user.mention} </b>😍\n\n<b>📫 ʏᴏᴜʀ ғɪʟᴇ ɪs ʀᴇᴀᴅʏ 👇</b>\n\n'           
-                f'<b>📂 Fɪʟᴇ Nᴀᴍᴇ</b> : <code>[ᴍʜ] {title}</code>\n\n'              
-                f'<b>⚙️ Fɪʟᴇ Sɪᴢᴇ</b> : <b>{size}</b>',
-                True,
-                'html',
-                disable_web_page_preview=True,
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton('📥 ᴅᴏᴡɴʟᴏᴀᴅ ʟɪɴᴋ 📥 ', url = msg.link)
-                        ],
-                        [
-                            InlineKeyboardButton("⚠️ ᴄᴀɴɴᴏᴛ ᴀᴄᴄᴇss ❓ ᴄʟɪᴄᴋ ʜᴇʀᴇ ⚠️", url=f'https://t.me/+NmhTxuQACl8zMmJl')
-                        ]
-                    ]
+                reply_markup = InlineKeyboardMarkup(buttons)   
+                    )
+                btn = [[
+                    InlineKeyboardButton("🔥 GET FILE 🔥", url=f'{send_file.link}')
+                    ],[
+                    InlineKeyboardButton("✘ Close ✘", callback_data='close_data')
+                ]]
+                reply_markup = InlineKeyboardMarkup(btn)
+                bb = await query.message.reply_text(
+                    text=script.ANYFILECAPTION_TXT.format(file_name=title, file_size=size, file_caption=f_caption),
+                reply_markup = reply_markup
                 )
-            )
-            await query.answer('Check Out The Chat',)
-            await asyncio.sleep(300)
-            await msg1.delete()
-            await msg.delete()
-            del msg1, msg
+                await asyncio.sleep(300)
+                await send_file.delete()
+                await bb.delete()
+
         except Exception as e:
             logger.exception(e, exc_info=True)
             await query.answer(f"Encountering Issues", True)
