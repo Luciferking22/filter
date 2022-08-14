@@ -443,7 +443,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         buttons = [[
             InlineKeyboardButton('➕ 𝖠𝖣𝖣 𝖡𝖮𝖳 𝖳𝖮 𝖸𝖮𝖴𝖱 𝖦𝖱𝖮𝖴𝖯 ➕', url=f'http://t.me/MHLinkzBot?startgroup=true')
         ]]      
-            try:
+        try:
             msg = await client.send_cached_media(
                 chat_id=AUTH_CHANNEL,
                 file_id=file_id,
