@@ -443,28 +443,36 @@ async def cb_handler(client: Client, query: CallbackQuery):
         buttons = [[
             InlineKeyboardButton('➕ 𝖠𝖣𝖣 𝖡𝖮𝖳 𝖳𝖮 𝖸𝖮𝖴𝖱 𝖦𝖱𝖮𝖴𝖯 ➕', url=f'http://t.me/MHLinkzBot?startgroup=true')
         ]]      
-            else:
-                msg = await client.send_cached_media(
-                    chat_id=AUTH_CHANNEL,
-                    file_id=file_id,
-                    caption=f'<b>📽 {title}</b>\n\n<code>🗯 {size}</code>\n\n<code>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</code>\n\n<b>{greeting} {query.from_user.mention}✨</b>\n\n<i>Because of copyright this file will be deleted from here within 5 minutesSo forward it to anywhere before downloading!</i>\n\n<i>കോപ്പിറൈറ്റ് ഉള്ളതുകൊണ്ട് ഈ ഫയൽ 5 മിനിറ്റിനുള്ളിൽ ഇവിടെനിന്നും ഡിലീറ്റ് ആകുന്നതാണ്അതുകൊണ്ട് ഇവിടെ നിന്നും മറ്റെവിടെക്കെങ്കിലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക!</i>\n\n<b><b>🔰 Powered By:</b>{query.message.chat.title}</b>',
-                    reply_markup = InlineKeyboardMarkup(buttons)   
-                    )
-                btn = [[
-                    InlineKeyboardButton("🔥 GET FILE 🔥", url=f'{send_file.link}')
-                    ],[
-                    InlineKeyboardButton("✘ Close ✘", callback_data='close_data')
-                ]]
-                reply_markup = InlineKeyboardMarkup(btn)
-                bb = await query.message.reply_text(
-                    text=script.ANYFILECAPTION_TXT.format(file_name=title, file_size=size, file_caption=f_caption),
-                reply_markup = reply_markup
+            try:
+            msg = await client.send_cached_media(
+                chat_id=AUTH_CHANNEL,
+                file_id=file_id,
+                caption=f'<b>📽 {title}</b>\n\n<code>🗯 {size}</code>\n\n<code>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</code>\n\n<b>{greeting} {query.from_user.mention}✨</b>\n\n<i>Because of copyright this file will be deleted from here within 5 minutesSo forward it to anywhere before downloading!</i>\n\n<i>കോപ്പിറൈറ്റ് ഉള്ളതുകൊണ്ട് ഈ ഫയൽ 5 മിനിറ്റിനുള്ളിൽ ഇവിടെനിന്നും ഡിലീറ്റ് ആകുന്നതാണ്അതുകൊണ്ട് ഇവിടെ നിന്നും മറ്റെവിടെക്കെങ്കിലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക!</i>\n\n<b><b>🔰 Powered By:</b>{query.message.chat.title}</b>',
+                protect_content=True if ident == "filep" else False 
+            )
+            msg1 = await query.message.reply(
+                f'<b> ʜᴇʏ 👋 {query.from_user.mention} </b>😍\n\n<b>📫 ʏᴏᴜʀ ғɪʟᴇ ɪs ʀᴇᴀᴅʏ 👇</b>\n\n'           
+                f'<b>📂 Fɪʟᴇ Nᴀᴍᴇ</b> : <code>[ᴍʜ] {title}</code>\n\n'              
+                f'<b>⚙️ Fɪʟᴇ Sɪᴢᴇ</b> : <b>{size}</b>',
+                True,
+                'html',
+                disable_web_page_preview=True,
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton('📥 ᴅᴏᴡɴʟᴏᴀᴅ ʟɪɴᴋ 📥 ', url = msg.link)
+                        ],
+                        [
+                            InlineKeyboardButton("⚠️ ᴄᴀɴɴᴏᴛ ᴀᴄᴄᴇss ❓ ᴄʟɪᴄᴋ ʜᴇʀᴇ ⚠️", url=f'https://t.me/+NmhTxuQACl8zMmJl')
+                        ]
+                    ]
                 )
-                await asyncio.sleep(300)
-                await send_file.delete()
-                await bb.delete()
-
-
+            )
+            await query.answer('Check Out The Chat',)
+            await asyncio.sleep(300)
+            await msg1.delete()
+            await msg.delete()
+            del msg1, msg
         except Exception as e:
             logger.exception(e, exc_info=True)
             await query.answer(f"Encountering Issues", True)
