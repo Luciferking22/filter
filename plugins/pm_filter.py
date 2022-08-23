@@ -451,19 +451,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 protect_content=True if ident == "filep" else False 
             )
             msg1 = await query.message.reply(
-                f'<b> ʜᴇʏ 👋 {query.from_user.mention} </b>😍\n\n<b>📫 ʏᴏᴜʀ ғɪʟᴇ ɪs ʀᴇᴀᴅʏ 👇</b>\n\n'           
-                f'<b>📂 Fɪʟᴇ Nᴀᴍᴇ</b> : <code>[ᴍʜ] {title}</code>\n\n'              
-                f'<b>⚙️ Fɪʟᴇ Sɪᴢᴇ</b> : <b>{size}</b>',
+                f'<spoiler><b>{query.from_user.mention}</b></spoiler>\n\n'           
+                f'<b>Fɪʟᴇ Nᴀᴍᴇ</b>\n<code>[MH] {title}</code>\n\n'              
+                f'<b>Fɪʟᴇ Sɪᴢᴇ</b> : <b>{size}</b>\n\n'
+                f'<b>Error?<a href=https://t.me/+NmhTxuQACl8zMmJl>CLICK HERE TO JOIN & TRY AGAIN!</a></b>',
                 True,
                 'html',
-                disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
-                    [
+                     [
                         [
-                            InlineKeyboardButton('📥 ᴅᴏᴡɴʟᴏᴀᴅ ʟɪɴᴋ 📥 ', url = msg.link)
-                        ],
+                            InlineKeyboardButton("🔥 GET FILE 🔥", url=f'{msg.link}')
+                        ],                       
                         [
-                            InlineKeyboardButton("⚠️ ᴄᴀɴɴᴏᴛ ᴀᴄᴄᴇss ❓ ᴄʟɪᴄᴋ ʜᴇʀᴇ ⚠️", url=f'https://t.me/+NmhTxuQACl8zMmJl')
+                            InlineKeyboardButton("✘ Close ✘", callback_data='close_data')
                         ]
                     ]
                 )
