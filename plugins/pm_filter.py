@@ -450,10 +450,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 caption=f'<b>📽 {title}</b>\n\n<code>🗯 {size}</code>\n\n<code>=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</code>\n\n<b>{greeting} {query.from_user.mention}✨</b>\n\n<i>Because of copyright this file will be deleted from here within 5 minutesSo forward it to anywhere before downloading!</i>\n\n<i>കോപ്പിറൈറ്റ് ഉള്ളതുകൊണ്ട് ഈ ഫയൽ 5 മിനിറ്റിനുള്ളിൽ ഇവിടെനിന്നും ഡിലീറ്റ് ആകുന്നതാണ്അതുകൊണ്ട് ഇവിടെ നിന്നും മറ്റെവിടെക്കെങ്കിലും മാറ്റിയതിന് ശേഷം ഡൗൺലോഡ് ചെയ്യുക!</i>\n\n<b><b>🔰 Powered By:</b>{query.message.chat.title}</b>',
                 protect_content=True if ident == "filep" else False 
             )
-            msg1 = await query.message.reply(
-                f'<spoiler><b>{query.from_user.mention}</b></spoiler>\n\n'           
-                f'<b>Fɪʟᴇ Nᴀᴍᴇ</b>\n<code>[MH] {title}</code>\n\n'              
-                f'<b>Fɪʟᴇ Sɪᴢᴇ</b> : <b>{size}</b>\n\n'
+            msg1 = await query.message.reply(           
+                f'<b>Fɪʟᴇ Nᴀᴍᴇ</b>\n<code> {title}</code>\n\n'              
+                f'<b>Sɪᴢᴇ</b> : <b>{size}</b>\n\n'
                 f'<b>Error?<a href=https://t.me/+NmhTxuQACl8zMmJl>CLICK HERE TO JOIN & TRY AGAIN!</a></b>',
                 True,
                 'html',
